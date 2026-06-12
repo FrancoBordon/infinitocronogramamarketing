@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INFINITO REGALERÍA — Plan de Marketing 45 Días</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d0d12;color:#f0ebe0;min-height:100vh;padding:0}
+  :root{
+    --gold:#d4af37;--gold-light:#f0d878;--rose:#e8a0a0;--steel:#c0c8d0;
+    --phase1:#3b7fd4;--phase2:#d4af37;--phase3:#34a86a;
+    --bg:#0d0d12;--surface:#18181f;--surface2:#22222e;--border:#2e2e3e;
+    --text:#f0ebe0;--muted:#8888a0;--green:#34a86a;--fire:#d94a2b;
+  }
+  header{background:linear-gradient(135deg,#1a1a05 0%,#0d0d12 60%,#05101a 100%);border-bottom:1px solid var(--border);padding:1.5rem 2rem}
+  .logo{font-size:2rem;font-weight:800;letter-spacing:-.02em;color:var(--gold)}
+  .logo span{color:var(--steel)}
+  .subtitle{font-size:.85rem;color:var(--muted);margin-top:.2rem;letter-spacing:.05em;text-transform:uppercase}
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem}
+  .stat-val{font-size:1.8rem;font-weight:700;color:var(--gold)}
+  .stat-val.fire{color:var(--fire)}
+  .stat-val.green{color:var(--green)}
+  .stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem}
+  .progress-wrap{padding:.75rem 2rem;border-bottom:1px solid var(--border);background:var(--surface)}
+  .progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--phase1),var(--gold),var(--green));border-radius:4px;width:2%}
+  .progress-label{font-size:.75rem;color:var(--muted);margin-top:.4rem}
+  main{display:flex;min-height:calc(100vh - 280px)}
+  .sidebar{width:320px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;background:var(--surface)}
+  .phase-tab{display:flex;border-bottom:1px solid var(--border);flex-wrap:wrap}
+  .ptab{flex:1;padding:.75rem .5rem;text-align:center;cursor:pointer;font-size:.8rem;font-weight:600;color:var(--muted);border:none;background:transparent;border-bottom:3px solid transparent;transition:all .2s;text-transform:uppercase;letter-spacing:.04em;min-width:25%}
+  .ptab.p1.active{color:var(--phase1);border-bottom-color:var(--phase1)}
+  .ptab.p2.active{color:var(--phase2);border-bottom-color:var(--phase2)}
+  .ptab.p3.active{color:var(--phase3);border-bottom-color:var(--phase3)}
+  .ptab:hover{background:var(--surface2)}
+  .day-list{padding:.5rem}
+  .day-card{padding:.75rem 1rem;border-radius:10px;cursor:pointer;margin-bottom:.4rem;border:1px solid transparent;transition:all .15s;display:flex;align-items:center;gap:.75rem}
+  .day-card:hover{background:var(--surface2);border-color:var(--border)}
+  .day-card.active{background:var(--surface2);border-color:var(--gold)}
+  .day-card.today{border-color:var(--fire)}
+  .day-num{font-size:.7rem;color:var(--muted);font-weight:700;min-width:48px;text-align:right}
+  .day-date{font-size:.85rem;font-weight:600}
+  .day-type-badge{font-size:.65rem;font-weight:700;padding:.15rem .4rem;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+  .badge-producto{background:#1a2a4a;color:#6ab0f5}
+  .badge-testimonio{background:#1a2e22;color:#5ecb8a}
+  .badge-tips{background:#2a2010;color:#f5c060}
+  .badge-bts{background:#2a1a2e;color:#c070f0}
+  .badge-oferta{background:#2e1a10;color:#f08020}
+  .badge-combo{background:#1a1a2e;color:#8070f0}
+  .badge-urgencia{background:#2e1010;color:#f05050}
+  .badge-regalo{background:#2e2a00;color:#e8d020}
+  .badge-cierre{background:#2e0a0a;color:#f04040}
+  .today-pill{font-size:.65rem;background:var(--fire);color:#fff;padding:.1rem .35rem;border-radius:20px;font-weight:700;margin-left:.25rem}
+  .content{flex:1;overflow-y:auto;padding:2rem}
+  .welcome{text-align:center;padding:3rem 2rem;color:var(--muted)}
+  .welcome-icon{font-size:3rem;margin-bottom:1rem}
+  .welcome h2{font-size:1.2rem;color:var(--text);margin-bottom:.5rem}
+  .detail-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+  .detail-day-num{font-size:.75rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+  .detail-date{font-size:1.4rem;font-weight:700;margin:.2rem 0}
+  .detail-title{font-size:1rem;color:var(--gold);font-weight:600}
+  .section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+  .section-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+  .section-label::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
+  .section.fire .section-label::before{background:var(--fire)}
+  .section.blue .section-label::before{background:var(--phase1)}
+  .section.green .section-label::before{background:var(--green)}
+  .content-text{font-size:.9rem;line-height:1.7;color:#c8c0b0;white-space:pre-wrap}
+  .slides-list{list-style:none}
+  .slides-list li{padding:.5rem .75rem;border-left:3px solid var(--gold);margin-bottom:.5rem;font-size:.88rem;line-height:1.5;color:#c8c0b0;background:var(--surface2);border-radius:0 6px 6px 0}
+  .slides-list li strong{color:var(--gold);font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:.15rem}
+  .caption-box{background:var(--surface2);border-radius:8px;padding:1rem;font-size:.85rem;line-height:1.7;color:#c8c0b0;white-space:pre-wrap;cursor:pointer;border:1px solid transparent;transition:border-color .2s}
+  .caption-box:hover{border-color:var(--gold)}
+  .copy-btn{display:flex;align-items:center;gap:.4rem;padding:.5rem 1rem;background:var(--gold);color:#0d0d12;border:none;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer;margin-top:.75rem;transition:all .15s}
+  .copy-btn:hover{background:var(--gold-light)}
+  .copy-btn.copied{background:var(--green);color:#fff}
+  .tip-box{background:#131a13;border:1px solid #1e3a1e;border-radius:8px;padding:.9rem 1rem;font-size:.85rem;color:#80c080;line-height:1.6}
+  .tip-box strong{color:var(--green);display:block;margin-bottom:.25rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+  .phase-header{padding:.75rem 1rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;border-bottom:1px solid var(--border)}
+  .nav-footer{display:flex;gap:.75rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+  .nav-btn{padding:.6rem 1.2rem;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;cursor:pointer;font-size:.85rem;transition:all .15s}
+  .nav-btn:hover{background:var(--surface2);border-color:var(--gold)}
+  .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.75rem}
+  .tool-item{background:var(--surface2);border-radius:8px;padding:.75rem;text-align:center;border:1px solid var(--border)}
+  .tool-name{font-weight:700;font-size:.9rem;color:var(--gold)}
+  .tool-desc{font-size:.75rem;color:var(--muted);margin-top:.2rem;line-height:1.4}
+  .regla{display:flex;gap:1rem;margin-bottom:1.25rem;padding:1rem;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
+  .regla-num{font-size:1.5rem;font-weight:800;color:var(--gold);min-width:40px}
+  .regla-text{font-size:.88rem;line-height:1.6;color:#c8c0b0}
+  .regla-text strong{color:var(--text);display:block;margin-bottom:.2rem}
+  @media(max-width:700px){main{flex-direction:column}.sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border)}.stats-bar{grid-template-columns:repeat(2,1fr)}.ptab{min-width:50%}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">INFINITO <span>REGALERÍA</span></div>
+  <div class="subtitle">Plan de Marketing · 45 Días · Del 17 mayo al 30 junio · Eje: Día del Padre (21 de junio)</div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-val">4</div><div class="stat-label">Líneas de producto</div></div>
+  <div class="stat"><div class="stat-val green">21/06</div><div class="stat-label">Día del Padre</div></div>
+  <div class="stat"><div class="stat-val fire">45</div><div class="stat-label">Días de contenido</div></div>
+  <div class="stat"><div class="stat-val">3</div><div class="stat-label">Fases del plan</div></div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:2%"></div></div>
+  <div class="progress-label" id="prog-label">Día 1 de 45 · Arranca hoy, 17 de mayo</div>
+</div>
+
+<main>
+  <div class="sidebar">
+    <div class="phase-tab">
+      <button class="ptab p1 active" onclick="setPhase(1,this)">Fase 1<br><span style="font-size:.65rem;font-weight:400">17–28 May</span></button>
+      <button class="ptab p2" onclick="setPhase(2,this)">Fase 2<br><span style="font-size:.65rem;font-weight:400">29 May–21 Jun</span></button>
+      <button class="ptab p3" onclick="setPhase(3,this)">Fase 3<br><span style="font-size:.65rem;font-weight:400">22–30 Jun</span></button>
+      <button class="ptab p1" onclick="setPhase(0,this)" style="border-bottom-color:transparent;color:var(--muted)">Reglas<br><span style="font-size:.65rem;font-weight:400">Oro</span></button>
+    </div>
+    <div id="day-list" class="day-list"></div>
+  </div>
+  <div class="content" id="content">
+    <div class="welcome">
+      <div class="welcome-icon">🎁</div>
+      <h2>Bienvenido a tu plan de 45 días</h2>
+      <p>Seleccioná cualquier día para ver el contenido listo para publicar.<br>Comenzás HOY — 17 de mayo.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+const DAYS = [
+// ============ FASE 1: DESPERTAR INTERÉS (Días 1-12 · 17-28 Mayo) ============
+{date:"17 May",dw:"Dom",day:1,phase:1,type:"producto",title:"Bienvenida — Conocé Infinito Regalería",
+ format:"Reel · 30 seg · Mostrar el local o productos en mesa · Instagram/TikTok/Facebook",
+ instruction:"Filmá en vertical. Si tenés local, mostralo. Si no, armá una mesa con los 4 productos estrella: campera de la selección, puffer negra, joyas de acero y perfume. Buena luz natural.",
+ script:`[Cámara recorriendo los productos sobre la mesa o estantería]
+Voz/texto superpuesto:
+"Bienvenido a Infinito Regalería 🎁"
+"Indumentaria, joyas y perfumes para regalar... o regalarte."
+
+[Mostrar cada producto 2-3 seg]
+- Campera oficial de la Selección
+- Campera puffer negra
+- Joyas de acero blanco y dorado
+- Perfumes importados
+
+[Cierre]
+"Todo en un solo lugar. Envíos a todo el país.
+Mirá el catálogo completo: link en bio 🔗"`,
+ caption:"🎁 Bienvenido a Infinito Regalería\n\nIndumentaria, joyas y perfumes para regalar... o para darte un gusto vos.\n\n🧥 Camperas de la Selección\n🧥 Puffer negras\n💍 Joyas de acero blanco y dorado\n🌸 Perfumes\n\n📦 Envíos a todo el país\n🔗 Catálogo completo: link en bio\n\n#InfinitoRegaleria #Regaleria #CamperaSeleccion #JoyasDeAcero #Perfumes",
+ tip:"Primer post = carta de presentación. Que se entienda en 5 segundos qué vendés. Fijá este reel en tu perfil esta semana."},
+
+{date:"18 May",dw:"Lun",day:2,phase:1,type:"producto",title:"Campera oficial de la Selección — Showcase",
+ format:"Reel · 25-30 seg · Modelo puesta o en maniquí · Buena luz",
+ instruction:"Si tenés a alguien que pueda probársela, mejor (genera más conexión). Mostrá detalles: escudo, tela, terminaciones. Mencioná talles disponibles.",
+ script:`[Plano de la campera colgada o en maniquí, luego puesta]
+Texto en pantalla:
+"La campera que no podés no tener 🇦🇷🔥"
+
+[Acercamientos a detalles]
+- Escudo bordado
+- Cierre y bolsillos
+- Calidad de la tela
+
+[Modelo girando o caminando]
+"Disponible en todos los talles."
+"Ideal para el frío y para hacer aguante."
+
+[Cierre con precio o CTA]
+"Consultá precio y talles por DM o WhatsApp 📲"`,
+ caption:"La campera que no podés no tener este invierno 🇦🇷🔥\n\nOficial, con todos los detalles que la hacen única.\n\n✅ Todos los talles\n✅ Calidad premium\n✅ Envíos a todo el país\n\n📲 Consultanos por WhatsApp o DM\n\n#CamperaSeleccion #Argentina #Indumentaria #InfinitoRegaleria #Hinchas",
+ tip:"Las camperas de selección son producto de alta demanda emocional. Mostralas siempre puestas, no solo colgadas — la gente se imagina usándola."},
+
+{date:"19 May",dw:"Mar",day:3,phase:1,type:"testimonio",title:"Testimonio: Cliente con su campera nueva",
+ format:"Video selfie o foto · 15 seg · Sin producción",
+ instruction:"Pedile a un cliente que ya compró que te mande un video corto o foto usando la campera. Si no tenés todavía, podés usar una foto del producto con un comentario/reseña escrita de WhatsApp (con permiso).",
+ script:`Opción A — Video del cliente:
+"Llegó mi campera de Infinito Regalería y quedó espectacular.
+La calidad está buenísima. Re recomendable."
+
+Opción B — Si no hay video, usar texto de reseña:
+[Captura de chat de WhatsApp con el comentario del cliente, recortando datos personales]
+Texto superpuesto: "Así llegan nuestros pedidos a cada rincón del país 📦"`,
+ caption:"Así llegan nuestros pedidos ✨\n\nGracias por la confianza 🙌 Si todavía no tenés la tuya, te esperamos.\n\n📲 Pedidos por WhatsApp o DM\n📦 Envíos a todo el país\n\n#InfinitoRegaleria #Testimonio #CamperaSeleccion #ClientesFelices",
+ tip:"Empezá a juntar testimonios desde el día 1 — pedile a cada cliente que te mande una foto o video al recibir su pedido. Es tu mejor material gratis."},
+
+{date:"20 May",dw:"Mié",day:4,phase:1,type:"tips",title:"Cómo combinar joyas de acero blanco y dorado",
+ format:"Carrusel Canva · 5 slides · Feed",
+ instruction:"Diseño simple en Canva, 2 colores (dorado + negro/blanco). Mostrá fotos reales de las joyas si las tenés, o íconos simples.",
+ slides:[
+   {n:"Slide 1 (portada)","t":"Cómo combinar tus joyas de acero ✨ (sin equivocarte nunca)"},
+   {n:"Slide 2","t":"1. Dorado con ropa cálida (beige, marrón, blanco) — siempre suma"},
+   {n:"Slide 3","t":"2. Acero blanco con looks frescos, denim o colores fríos"},
+   {n:"Slide 4","t":"3. No mezcles más de 2 metales en el mismo look"},
+   {n:"Slide 5 (CTA)","t":"4. Tip extra: el acero no se oxida ni se pone verde. Ideal para uso diario.\n🔗 Mirá nuestra colección — link en bio"},
+ ],
+ caption:"✨ Guardá este post: tips para combinar tus joyas de acero sin fallar\n\nEl acero blanco y dorado no se oxida, no se pone verde y dura años. Ideal para regalar o para vos.\n\n🔗 Mirá toda la colección: link en bio\n\n#JoyasDeAcero #Accesorios #InfinitoRegaleria #Tips #Moda",
+ tip:"Posts de tips/valor se guardan y comparten mucho. Pedí explícitamente: 'Guardalo para cuando tengas que armar tu look'."},
+
+{date:"21 May",dw:"Jue",day:5,phase:1,type:"producto",title:"Campera puffer negra — El básico que no falla",
+ format:"Reel · 25 seg · Modelo puesta, ambiente frío/exterior si es posible",
+ instruction:"Si podés filmar afuera con frío real, mejor (contexto = venta). Mostrá la campera puesta, detalles del relleno, capucha, bolsillos.",
+ script:`[Modelo caminando afuera con la campera puesta, frío visible]
+Texto en pantalla:
+"El básico que combina con todo ❄️🖤"
+
+[Acercamientos]
+- Capucha
+- Cierres y bolsillos
+- Textura del relleno (puffer)
+
+[Cierre]
+"Abrigo real para el invierno.
+Todos los talles disponibles.
+Consultas por WhatsApp 📲"`,
+ caption:"El básico que combina con TODO ❄️🖤\n\nCampera puffer negra — abrigo real para el invierno, en todos los talles.\n\n📲 Consultá disponibilidad por WhatsApp o DM\n📦 Envíos a todo el país\n\n#CamperaPuffer #Invierno #Abrigo #InfinitoRegaleria #Moda",
+ tip:"Las puffers negras se venden todo el invierno — es tu producto 'caballito de batalla'. Repetí este tipo de contenido cada 7-10 días con ángulos distintos."},
+
+{date:"22 May",dw:"Vie",day:6,phase:1,type:"oferta",title:"Viernes de Oferta — Descuento en joyas de acero",
+ format:"Post feed + Stories · Oferta puntual del día",
+ instruction:"Elegí 2-3 productos de joyería y ofrecé un descuento concreto (10-15%) válido solo el viernes y sábado. Diseño simple en Canva con el precio tachado y el nuevo precio.",
+ script:`Story:
+"🚨 VIERNES DE OFERTA 🚨"
+"15% OFF en joyas seleccionadas de acero"
+"Válido hoy y mañana"
+[Mostrar 2-3 productos con precio]
+[Flecha → Link en bio / WhatsApp]`,
+ caption:"🚨 VIERNES DE OFERTA 🚨\n\n15% OFF en joyas seleccionadas de acero blanco y dorado.\nVálido hoy y mañana sábado.\n\n📲 Hacé tu pedido por WhatsApp o DM\n📦 Envíos a todo el país\n\n#Oferta #JoyasDeAcero #InfinitoRegaleria #DescuentoDelDia",
+ tip:"Las ofertas de viernes/sábado generan picos de venta para el fin de semana. No abuses — máximo 1 oferta puntual por semana en Fase 1."},
+
+{date:"23 May",dw:"Sáb",day:7,phase:1,type:"bts",title:"Detrás de escena: Llegada de nuevo stock",
+ format:"Story + Reel breve · 15 seg · Mostrar cajas/mercadería",
+ instruction:"Filmá el momento de abrir cajas de mercadería nueva (o reponer percheros). Genera expectativa y humaniza el negocio.",
+ script:`[Cámara mostrando cajas o mercadería nueva]
+Texto/voz:
+"Llegó stock nuevo a Infinito Regalería 📦✨"
+
+[Mostrar algunos productos saliendo de las cajas]
+
+[Cierre]
+"Esta semana subimos todo al catálogo.
+¿Qué te gustaría ver primero? Contanos en los comentarios 👇"`,
+ caption:"Llegó stock nuevo 📦✨\n\nEsta semana subimos todo: más camperas, más joyas y nuevos perfumes.\n\n¿Qué te gustaría ver primero? Contanos 👇\n\n#InfinitoRegaleria #NuevoStock #DetrasDeEscena",
+ tip:"El contenido de 'stock nuevo' genera curiosidad y comentarios — respondé todos, eso mejora el alcance del posteo."},
+
+{date:"24 May",dw:"Dom",day:8,phase:1,type:"tips",title:"Post inspiracional: 'Un buen regalo dice más que mil palabras'",
+ format:"Post feed con frase · Diseño simple en Canva",
+ instruction:"Domingo = post más suave, inspiracional, sin venta directa. Imagen estética con frase + fondo de productos.",
+ script:`Diseño:
+[Fondo con foto de productos: campera, joya, perfume]
+Frase central:
+"Un buen regalo dice lo que las palabras no llegan a decir 🎁"
+
+Texto pequeño abajo:
+"Infinito Regalería — para cada ocasión"`,
+ caption:"Un buen regalo dice lo que las palabras no llegan a decir 🎁\n\nEn Infinito Regalería encontrás algo para cada ocasión: cumpleaños, aniversarios, o simplemente para darte un gusto.\n\n🔗 Mirá el catálogo: link en bio\n\n#InfinitoRegaleria #Regalos #Reflexion #Domingo",
+ tip:"Los domingos conviene bajar la intensidad de venta. Este tipo de post mantiene la marca presente sin saturar."},
+
+{date:"25 May",dw:"Lun",day:9,phase:1,type:"producto",title:"Perfumes — Presentación de la línea",
+ format:"Reel · 25-30 seg · Mostrar frascos, aplicar y describir",
+ instruction:"Mostrá 2-3 perfumes distintos. Si conocés las notas olfativas (a qué huele, inspiración), mencionalas — eso ayuda mucho a la decisión de compra online.",
+ script:`[Mostrar frascos en fila, buena iluminación]
+Texto/voz:
+"Perfumes para regalar o para vos 🌸"
+
+[Acercamiento a cada frasco, 3-4 seg cada uno]
+- "Este es fresco, ideal para el día"
+- "Este es más intenso, para la noche"
+- "Este es el más vendido — dulce y duradero"
+
+[Cierre]
+"Todos con muy buena fijación.
+Consultá precios y aromas disponibles por WhatsApp 📲"`,
+ caption:"Perfumes para regalar o para darte un gusto 🌸\n\nTenemos opciones frescas, intensas y dulces — con muy buena fijación y precios accesibles.\n\n📲 Consultá aromas disponibles por WhatsApp o DM\n\n#Perfumes #InfinitoRegaleria #Fragancias #Regalos",
+ tip:"En perfumes, la gente compra por descripción + confianza. Si podés, grabá oliendo y reaccionando — la espontaneidad vende más que la perfección."},
+
+{date:"26 May",dw:"Mar",day:10,phase:1,type:"testimonio",title:"Testimonio: Cliente con joya de regalo",
+ format:"Foto o video corto · 15 seg",
+ instruction:"Buscar a alguien que haya comprado una joya para regalar (a su mamá, pareja, amiga). Si tenés foto de la joya puesta, perfecto.",
+ script:`Texto sobre foto/video:
+"Le regalé esto a mi mamá y le encantó 🥹💛"
+"Acero dorado, no se mancha ni se pone verde."
+"La pedí por Infinito Regalería y llegó perfecta."
+
+[Cierre]
+"¿A quién le regalarías algo así? Etiquetalo 👇"`,
+ caption:"\"Le regalé esto a mi mamá y le encantó 🥹💛\"\n\nAcero dorado, no se mancha ni se pone verde. Calidad que se nota.\n\n¿A quién le regalarías algo así? Etiquetalo en los comentarios 👇\n\n📲 Pedidos por WhatsApp o DM\n\n#JoyasDeAcero #InfinitoRegaleria #Testimonio #RegalosQueEmocionan",
+ tip:"Pedí que etiqueten a alguien — esa es una forma simple y gratuita de generar alcance orgánico (cada etiqueta es una nueva persona viendo tu marca)."},
+
+{date:"27 May",dw:"Mié",day:11,phase:1,type:"tips",title:"Guía de talles — Camperas de la Selección",
+ format:"Carrusel Canva · 5 slides · Información práctica",
+ instruction:"Post muy útil para resolver la duda #1 en indumentaria online: el talle. Si tenés una tabla de medidas real, usala.",
+ slides:[
+   {n:"Slide 1","t":"Guía de talles: Camperas de la Selección 📏 (para que elijas bien a la primera)"},
+   {n:"Slide 2","t":"S → Contextura pequeña / ajustada al cuerpo"},
+   {n:"Slide 3","t":"M y L → Los talles más pedidos, calce regular"},
+   {n:"Slide 4","t":"XL y XXL → Calce amplio, ideal para usar con buzo abajo"},
+   {n:"Slide 5 (CTA)","t":"¿Dudas con tu talle? Escribinos y te ayudamos a elegir 📲 Link en bio"},
+ ],
+ caption:"📏 Guía de talles para que elijas bien a la primera\n\nSi tenés dudas, escribinos por WhatsApp con tu altura y contextura — te ayudamos a elegir el talle ideal.\n\n📲 Link en bio\n\n#CamperaSeleccion #GuiaDeTalles #InfinitoRegaleria #Indumentaria",
+ tip:"Este post resuelve la objeción #1 de compra online. Fijalo en tu perfil — la gente lo busca antes de comprar ropa."},
+
+{date:"28 May",dw:"Jue",day:12,phase:1,type:"producto",title:"Puffer negra — Variantes y detalles que la hacen premium",
+ format:"Reel · 25 seg · Acercamientos a detalles + modelo puesta",
+ instruction:"Esta vez enfocate en detalles que justifiquen el precio: cierres, costuras, forro interno, capucha desmontable (si tiene).",
+ script:`[Acercamientos detallados]
+Texto/voz:
+"Los detalles que hacen la diferencia 🖤"
+
+- "Cierre reforzado"
+- "Forro interno abrigado"
+- "Costuras prolijas"
+
+[Modelo puesta, plano completo]
+"Calidad que se siente desde el primer día."
+
+[Cierre]
+"Disponible en todos los talles. Consultas por WhatsApp 📲"`,
+ caption:"Los detalles que hacen la diferencia 🖤\n\nCierre reforzado, forro abrigado y costuras prolijas — calidad que se siente desde el primer día.\n\n📲 Consultá talles disponibles por WhatsApp o DM\n📦 Envíos a todo el país\n\n#CamperaPuffer #Calidad #Invierno #InfinitoRegaleria",
+ tip:"Cierre de Fase 1. La próxima semana arranca la campaña de Día del Padre — empezá a armar los combos de regalo si todavía no lo hiciste."},
+
+// ============ FASE 2: CAMPAÑA DÍA DEL PADRE (Días 13-36 · 29 May - 21 Jun) ============
+{date:"29 May",dw:"Vie",day:13,phase:2,type:"regalo",title:"🚨 Arranca la campaña: Faltan 23 días para el Día del Padre",
+ format:"Post feed + Stories · Lanzamiento oficial de campaña",
+ instruction:"Día clave: a partir de hoy, todo el contenido tiene un hilo conductor — el Día del Padre (21 de junio). Diseño con countdown.",
+ script:`Story:
+[Sticker de cuenta regresiva hasta el 21 de junio]
+"Faltan 23 días para el Día del Padre 🎁"
+"¿Ya pensaste qué le vas a regalar?"
+
+Post feed:
+[Diseño con foto de campera + perfume]
+"23 días para el Día del Padre"
+"En Infinito Regalería tenemos el regalo perfecto"`,
+ caption:"🎁 Faltan 23 días para el Día del Padre\n\n¿Ya pensaste qué le vas a regalar? En Infinito Regalería tenemos:\n\n🧥 Camperas de la Selección\n🧥 Puffer negras\n💍 Joyas de acero\n🌸 Perfumes\n\nAlgo para cada papá. 📲 Consultanos por WhatsApp\n\n#DiaDelPadre #InfinitoRegaleria #Regalos #21DeJunio",
+ tip:"Desde hoy, mencioná el Día del Padre en CASI todo el contenido (de forma natural). Es tu fecha más fuerte de los próximos 45 días."},
+
+{date:"30 May",dw:"Sáb",day:14,phase:2,type:"bts",title:"Armando los combos de regalo para papá",
+ format:"Story + Reel · 15-20 seg · Mostrar armado de combos",
+ instruction:"Mostrá físicamente cómo armás un combo (ej: campera + perfume, o joya + perfume) en una caja o bolsa de regalo.",
+ script:`[Cámara mostrando el armado de un combo en una caja/bolsa]
+Texto/voz:
+"Armando los combos para el Día del Padre 🎁"
+
+[Mostrar productos entrando a la caja]
+- Campera o puffer
+- Perfume
+- (Opcional) joya de acero
+
+[Cierre]
+"Vas a poder elegir tu combo ideal. Esta semana te mostramos las opciones 👀"`,
+ caption:"Armando los combos para el Día del Padre 🎁\n\nEsta semana te mostramos todas las opciones para que regalés algo único.\n\n📲 Reservá el tuyo por WhatsApp\n\n#DiaDelPadre #InfinitoRegaleria #Combos #DetrasDeEscena",
+ tip:"Generá expectativa antes de mostrar los combos completos — el 'spoiler' del armado genera curiosidad para el carrusel de mañana."},
+
+{date:"31 May",dw:"Dom",day:15,phase:2,type:"combo",title:"5 ideas de regalo para el Día del Padre",
+ format:"Carrusel Canva · 6 slides · Post estrella de la campaña",
+ instruction:"Post de mayor alcance esperado de la semana. Diseño prolijo, con fotos reales de productos si es posible. Cada slide = 1 idea con producto + rango de precio si querés mostrarlo.",
+ slides:[
+   {n:"Slide 1 (portada)","t":"5 ideas de regalo para el Día del Padre 🎁 (para todo tipo de papá)"},
+   {n:"Slide 2","t":"1. Para el papá futbolero → Campera oficial de la Selección 🇦🇷"},
+   {n:"Slide 3","t":"2. Para el papá friolento → Campera puffer negra ❄️"},
+   {n:"Slide 4","t":"3. Para el papá detallista → Perfume importado 🌸"},
+   {n:"Slide 5","t":"4. Para el papá con estilo → Joya de acero dorado o blanco 💍"},
+   {n:"Slide 6 (CTA)","t":"5. Para el que quiere sorprender → Combo armado (campera + perfume). 📲 Consultá por WhatsApp · Link en bio"},
+ ],
+ caption:"🎁 5 ideas de regalo para el Día del Padre — para todo tipo de papá\n\nGuardá este post y elegí la idea que más le calce a tu papá, suegro, abuelo o esposo.\n\n📲 Consultá disponibilidad y precios por WhatsApp\n📦 Envíos a todo el país — pedí con tiempo para que llegue antes del 21\n\n#DiaDelPadre #InfinitoRegaleria #IdeasDeRegalo #Regalos",
+ tip:"Pedí que guarden y compartan: 'Mandáselo a quien le tenga que regalar algo a su papá'. Este post puede ser el más viral de la campaña."},
+
+{date:"1 Jun",dw:"Lun",day:16,phase:2,type:"producto",title:"El regalo que todo papá futbolero quiere",
+ format:"Reel · 25-30 seg · Modelo puesta + emoción",
+ instruction:"Enfoque 100% en la campera de la selección como regalo. Si podés, filmá a alguien 'sorprendiéndose' al recibirla (actuado o real).",
+ script:`[Plano de alguien abriendo una caja/bolsa con la campera adentro]
+Texto/voz:
+"El regalo que todo papá futbolero quiere 🇦🇷⚽"
+
+[Reacción al ver la campera, se la prueba]
+"Calidad oficial, todos los talles."
+
+[Cierre]
+"Reservá la tuya para el Día del Padre.
+Envíos a todo el país — pedí ya para que llegue a tiempo 📲"`,
+ caption:"El regalo que todo papá futbolero quiere 🇦🇷⚽\n\nCampera oficial de la Selección — calidad premium, todos los talles.\n\n📦 Pedí con tiempo para que llegue antes del 21 de junio\n📲 Consultas por WhatsApp\n\n#DiaDelPadre #CamperaSeleccion #Argentina #InfinitoRegaleria",
+ tip:"A partir de esta semana, empezá a comunicar los tiempos de envío. Nadie quiere que el regalo llegue tarde — eso también genera urgencia real."},
+
+{date:"2 Jun",dw:"Mar",day:17,phase:2,type:"testimonio",title:"Testimonio: Compró un perfume de regalo",
+ format:"Foto/video corto · 15 seg",
+ instruction:"Buscar testimonio de alguien que compró un perfume para regalar (puede ser para el Día del Padre o cualquier ocasión anterior).",
+ script:`Texto sobre foto:
+"Le compré este perfume a mi viejo y quedó re contento 🙌"
+"Buena fijación, aroma masculino, llegó rapidísimo."
+
+[Cierre]
+"¿Ya elegiste el perfume para tu papá? Tenemos varias opciones 🌸"`,
+ caption:"\"Le compré este perfume a mi viejo y quedó re contento 🙌\"\n\nBuena fijación, aroma masculino, envío rápido.\n\n¿Ya elegiste el perfume para tu papá? Tenemos varias opciones.\n\n📲 Consultá aromas por WhatsApp\n\n#DiaDelPadre #Perfumes #InfinitoRegaleria #Testimonio",
+ tip:"Los testimonios con la palabra 'mi viejo' o 'mi papá' generan identificación inmediata en esta campaña. Priorizá ese tipo de lenguaje."},
+
+{date:"3 Jun",dw:"Mié",day:18,phase:2,type:"tips",title:"Cómo elegir el perfume correcto para regalar",
+ format:"Carrusel Canva · 5 slides · Post de valor",
+ instruction:"Ayudá a resolver la duda más común al regalar perfume: 'no sé qué le va a gustar'.",
+ slides:[
+   {n:"Slide 1","t":"¿Cómo elegir el perfume correcto para regalar? 🌸 (sin arriesgarte)"},
+   {n:"Slide 2","t":"1. Si no sabés qué usa, elegí algo neutro — ni muy dulce ni muy fuerte"},
+   {n:"Slide 3","t":"2. Para hombres mayores: aromas amaderados o clásicos funcionan siempre"},
+   {n:"Slide 4","t":"3. Para hombres jóvenes: aromas frescos o cítricos son un acierto seguro"},
+   {n:"Slide 5 (CTA)","t":"4. ¿Seguís con dudas? Escribinos y te recomendamos según el perfil 📲 Link en bio"},
+ ],
+ caption:"🌸 Cómo elegir el perfume correcto para regalar (sin arriesgarte)\n\nSi tenés dudas sobre qué aroma elegir para tu papá, escribinos — te ayudamos según su perfil.\n\n📲 Link en bio\n\n#DiaDelPadre #Perfumes #InfinitoRegaleria #Tips #Regalos",
+ tip:"Ofrecer 'asesoramiento personalizado' por WhatsApp aumenta la conversión — mucha gente no compra por miedo a elegir mal, no por precio."},
+
+{date:"4 Jun",dw:"Jue",day:19,phase:2,type:"oferta",title:"Oferta: Descuento en joyas de acero dorado",
+ format:"Post feed + Stories · Oferta puntual",
+ instruction:"Foco en joyas de acero dorado como opción de regalo más accesible. Descuento del 10-15% por tiempo limitado (48hs).",
+ script:`Story:
+"💛 OFERTA — Joyas de acero dorado"
+"15% OFF por 48 horas"
+"Ideal para regalar el Día del Padre"
+[Mostrar productos]
+[Flecha → WhatsApp/Link en bio]`,
+ caption:"💛 15% OFF en joyas de acero dorado — por 48 horas\n\nUna opción de regalo accesible, que no se mancha ni se pone verde.\n\n📲 Aprovechalo por WhatsApp o DM\n⏰ Válido hasta el viernes\n\n#Oferta #JoyasDeAcero #DiaDelPadre #InfinitoRegaleria",
+ tip:"Las ofertas de 48hs generan decisiones rápidas. Recordá la oferta en stories al día siguiente antes de que termine."},
+
+{date:"5 Jun",dw:"Vie",day:20,phase:2,type:"combo",title:"Combo \"Pack Papá Futbolero\"",
+ format:"Carrusel o post único · Combo armado con precio especial",
+ instruction:"Armá un combo concreto (ej: campera de la selección + perfume) con un precio combinado más conveniente que comprar por separado. Mostralo armado, con foto real si es posible.",
+ slides:[
+   {n:"Slide 1 (portada)","t":"🎁 Pack Papá Futbolero — Campera de la Selección + Perfume"},
+   {n:"Slide 2","t":"Incluye: Campera oficial (a elección de talle) + Perfume a elección"},
+   {n:"Slide 3","t":"Precio combo: más conveniente que comprarlo por separado"},
+   {n:"Slide 4 (CTA)","t":"Stock limitado para el Día del Padre. Reservá el tuyo por WhatsApp 📲"},
+ ],
+ caption:"🎁 Pack Papá Futbolero — Campera de la Selección + Perfume\n\nUn combo armado especialmente para el Día del Padre, con precio más conveniente que comprado por separado.\n\n⏰ Stock limitado — reservá el tuyo\n📲 Consultá por WhatsApp o DM\n\n#DiaDelPadre #PackPapa #InfinitoRegaleria #Combos",
+ tip:"Los combos aumentan el ticket promedio. Si vendés el combo, vendiste 2 productos en 1 sola conversación — mucho más eficiente."},
+
+{date:"6 Jun",dw:"Sáb",day:21,phase:2,type:"bts",title:"Showroom / Probadores — Mirá lo que tenemos",
+ format:"Reel recorrido · 20-25 seg · Mostrar variedad de stock",
+ instruction:"Si tenés local físico, filmá un recorrido rápido por los percheros y vitrinas. Si es venta online, mostrá toda la mercadería ordenada/exhibida.",
+ script:`[Cámara recorriendo percheros, vitrinas o mesa de exhibición]
+Texto/voz:
+"Mirá todo lo que tenemos para el Día del Padre 👀"
+
+[Mostrar variedad: camperas, joyas, perfumes en simultáneo]
+
+[Cierre]
+"Todo esto con envío a todo el país.
+¿Cuál te gusta más? Contanos en los comentarios 👇"`,
+ caption:"Mirá todo lo que tenemos para el Día del Padre 👀🎁\n\nCamperas, joyas, perfumes — y combos armados.\n\n¿Cuál te gusta más? Contanos en los comentarios 👇\n📲 Consultas por WhatsApp\n\n#InfinitoRegaleria #DiaDelPadre #Showroom",
+ tip:"Preguntar '¿cuál te gusta más?' genera comentarios, y los comentarios mejoran el alcance del posteo en el algoritmo."},
+
+{date:"7 Jun",dw:"Dom",day:22,phase2:true,phase:2,type:"tips",title:"3 razones para regalar algo diferente este Día del Padre",
+ format:"Post feed con frase/lista · Diseño Canva simple",
+ instruction:"Domingo = contenido más reflexivo, menos venta directa. Conecta emocionalmente con la idea de regalar algo significativo.",
+ script:`Diseño:
+[Fondo con foto de productos]
+Título: "3 razones para regalar algo diferente este Día del Padre 🎁"
+
+1. Porque las corbatas y medias ya están de más 😅
+2. Porque algo que él elegiría para sí mismo dice "te conozco"
+3. Porque un buen regalo se usa, no se guarda en un cajón`,
+ caption:"3 razones para regalar algo diferente este Día del Padre 🎁\n\n1️⃣ Las corbatas y medias ya están de más 😅\n2️⃣ Algo que él elegiría para sí mismo dice \"te conozco\"\n3️⃣ Un buen regalo se usa, no se guarda en un cajón\n\n🔗 Mirá las opciones: link en bio\n\n#DiaDelPadre #InfinitoRegaleria #Regalos #Domingo",
+ tip:"Este tipo de post con humor + reflexión suele generar comentarios divertidos. Respondelos — eso mantiene viva la conversación."},
+
+{date:"8 Jun",dw:"Lun",day:23,phase:2,type:"producto",title:"Puffer negra — Para el papá que sale temprano al frío",
+ format:"Reel · 25 seg · Contexto matutino/frío",
+ instruction:"Conectá el producto con una situación cotidiana: salir temprano a trabajar con frío. Esto humaniza el producto como regalo útil.",
+ script:`[Plano de alguien saliendo de casa temprano, con frío visible, poniéndose la campera]
+Texto/voz:
+"Para el papá que sale temprano, haga frío o no ❄️"
+
+[Acercamiento a la campera puesta]
+"Abrigo real, calce cómodo, todos los talles."
+
+[Cierre]
+"Un regalo que va a usar todos los días.
+Consultá disponibilidad por WhatsApp 📲"`,
+ caption:"Para el papá que sale temprano, haga frío o no ❄️\n\nCampera puffer negra — abrigo real, un regalo que se usa todos los días.\n\n📲 Consultá talles por WhatsApp\n\n#DiaDelPadre #CamperaPuffer #InfinitoRegaleria #Regalos",
+ tip:"Productos 'de uso diario' como regalo transmiten practicidad — apelá a eso para quienes buscan algo útil, no solo simbólico."},
+
+{date:"9 Jun",dw:"Mar",day:24,phase:2,type:"testimonio",title:"Testimonio: Combo de regalo ya entregado",
+ format:"Foto/video · 15-20 seg",
+ instruction:"Si ya vendiste algún combo, pedile al cliente una foto o video de la reacción al recibirlo (o armado, listo para entregar).",
+ script:`Texto sobre foto/video:
+"Ya armé el combo para mi papá y no puedo esperar a que lo abra 🥹🎁"
+"Campera + perfume — todo de Infinito Regalería"
+
+[Cierre]
+"¿Ya armaste el tuyo? Quedan pocos días 🔥"`,
+ caption:"\"Ya armé el combo para mi papá y no puedo esperar a que lo abra 🥹🎁\"\n\n¿Ya armaste el tuyo? Quedan pocos días para que llegue a tiempo.\n\n📲 Consultá por WhatsApp\n\n#DiaDelPadre #InfinitoRegaleria #Combos #Testimonio",
+ tip:"Si todavía no tenés testimonios reales de combos, podés mostrar el combo armado con un texto en primera persona simulando la perspectiva del comprador (aclarando que es ejemplo si corresponde)."},
+
+{date:"10 Jun",dw:"Mié",day:25,phase:2,type:"regalo",title:"Countdown: Faltan 11 días para el Día del Padre",
+ format:"Stories countdown · 2-3 slides",
+ instruction:"Actualizá el contador. Recordá tiempos de envío — a partir de esta semana es importante avisar sobre los plazos de entrega.",
+ script:`Story 1:
+[Sticker countdown hasta el 21 de junio]
+"Faltan 11 días para el Día del Padre 🎁"
+
+Story 2:
+"📦 Recordá: los envíos demoran [X] días hábiles."
+"Si querés que llegue a tiempo, pedí esta semana."
+[Flecha → WhatsApp]
+
+Story 3 (encuesta):
+"¿Ya elegiste el regalo para tu papá?"
+SÍ / TODAVÍA NO`,
+ caption:"[Día de stories — el feed puede descansar o republicar el carrusel de combos con nuevo texto]",
+ tip:"A partir de esta semana, comunicar los plazos de envío es CLAVE. Genera urgencia real y evita reclamos por demoras."},
+
+{date:"11 Jun",dw:"Jue",day:26,phase:2,type:"producto",title:"Joyas de acero — Regalo unisex que nunca falla",
+ format:"Reel · 20-25 seg · Mostrar variedad de piezas",
+ instruction:"Mostrá cadenas, pulseras, anillos de acero — destacá que son para hombre también (mucha gente no sabe que hay líneas masculinas).",
+ script:`[Mostrar piezas de acero para hombre: cadenas, pulseras, anillos]
+Texto/voz:
+"¿Sabías que también tenemos joyas para hombre? ⛓️"
+
+[Acercamientos a piezas]
+"Acero quirúrgico — no se oxida, no se mancha, ideal para uso diario."
+
+[Cierre]
+"Un regalo discreto pero con onda.
+Consultá modelos disponibles por WhatsApp 📲"`,
+ caption:"¿Sabías que también tenemos joyas para hombre? ⛓️\n\nAcero quirúrgico — no se oxida, no se mancha, ideal para uso diario. Un regalo discreto pero con onda.\n\n📲 Consultá modelos por WhatsApp\n\n#DiaDelPadre #JoyasDeAcero #InfinitoRegaleria #Regalos",
+ tip:"Mucha gente no asocia 'joyería' con regalos para hombres. Este post abre un público que no habías tocado todavía en la campaña."},
+
+{date:"12 Jun",dw:"Vie",day:27,phase:2,type:"oferta",title:"🚨 Oferta especial fin de semana — Código REGALO10",
+ format:"Post feed + Stories · Código de descuento",
+ instruction:"Lanzá un código de descuento (10%) válido todo el fin de semana, aplicable a cualquier producto. Genera urgencia sin sonar desesperado.",
+ script:`Story:
+"🚨 CÓDIGO ESPECIAL 🚨"
+"REGALO10 → 10% OFF en toda la tienda"
+"Válido sábado y domingo"
+[Sticker countdown hasta el domingo a la noche]
+[Flecha → WhatsApp/Link en bio]`,
+ caption:"🚨 CÓDIGO ESPECIAL — REGALO10 🚨\n\n10% OFF en toda la tienda, válido sábado y domingo.\n\nPerfecto para asegurar el regalo del Día del Padre con tiempo de envío.\n\n📲 Hacé tu pedido por WhatsApp y mencioná el código\n\n#DiaDelPadre #Descuento #REGALO10 #InfinitoRegaleria",
+ tip:"Un código aplicable a TODA la tienda (no solo un producto) simplifica la decisión de compra — menos fricción, más conversión."},
+
+{date:"13 Jun",dw:"Sáb",day:28,phase:2,type:"bts",title:"Empaquetando pedidos para que lleguen a tiempo",
+ format:"Story + Reel · 15 seg · Mostrar empaquetado",
+ instruction:"Filmá el proceso de empaquetar pedidos (cajas, bolsas, etiquetas). Genera confianza sobre la seriedad del envío.",
+ script:`[Cámara mostrando el armado/empaquetado de varios pedidos]
+Texto/voz:
+"Empaquetando los pedidos de esta semana 📦"
+
+[Mostrar etiquetas, cajas cerradas]
+
+[Cierre]
+"Si todavía no pediste el regalo del Día del Padre...
+esta es la última semana para que llegue a tiempo ⏰
+📲 WhatsApp en bio"`,
+ caption:"Empaquetando los pedidos de esta semana 📦\n\nSi todavía no pediste el regalo del Día del Padre, esta es la última semana para que llegue a tiempo ⏰\n\n📲 WhatsApp en bio\n\n#DiaDelPadre #InfinitoRegaleria #Envios #UltimaSemana",
+ tip:"Este post funciona como aviso de urgencia 'disfrazado' de contenido BTS — no se siente como venta pero comunica lo mismo."},
+
+{date:"14 Jun",dw:"Dom",day:29,phase:2,type:"combo",title:"Guía de regalos según el tipo de papá",
+ format:"Carrusel Canva · 6 slides · Segmentación de público",
+ instruction:"Segmentá por 'tipos de papá' para que cada persona se identifique con una opción concreta. Diseño divertido pero prolijo.",
+ slides:[
+   {n:"Slide 1 (portada)","t":"¿Qué tipo de papá es el tuyo? Encontrá su regalo ideal 🎁"},
+   {n:"Slide 2","t":"El futbolero de toda la vida → Campera de la Selección 🇦🇷"},
+   {n:"Slide 3","t":"El que siempre tiene frío → Campera puffer negra ❄️"},
+   {n:"Slide 4","t":"El detallista, de perfume todos los días → Perfume importado 🌸"},
+   {n:"Slide 5","t":"El de estilo discreto → Joya de acero (cadena o pulsera) ⛓️"},
+   {n:"Slide 6 (CTA)","t":"¿No sabés cuál es el tuyo? Escribinos y te ayudamos a elegir 📲 Link en bio"},
+ ],
+ caption:"¿Qué tipo de papá es el tuyo? Encontrá su regalo ideal 🎁\n\nGuardá este post y elegí la opción que más se parezca a tu papá, suegro o abuelo.\n\n📲 Consultanos por WhatsApp — quedan 7 días para el Día del Padre\n\n#DiaDelPadre #InfinitoRegaleria #IdeasDeRegalo #Regalos",
+ tip:"La segmentación por 'tipos de persona' genera mucha identificación y comentarios ('el mío es el friolento 😂'). Respondé y generá conversación."},
+
+{date:"15 Jun",dw:"Lun",day:30,phase:2,type:"urgencia",title:"🚨 Faltan 6 días — Últimos pedidos para llegar a tiempo",
+ format:"Reel urgencia · 25-30 seg · Cara a cámara o voz en off",
+ instruction:"Tono directo, informativo. El mensaje central: si quiere que llegue a tiempo, tiene que pedir esta semana.",
+ script:`[Cara a cámara o voz en off sobre productos]
+"Faltan 6 días para el Día del Padre."
+
+[pausa]
+"Y esta es la última semana para hacer tu pedido
+y que llegue a tiempo con envío."
+
+[directo]
+"Si lo dejás para el finde... puede no llegar."
+
+[cierre]
+"Pedilo hoy. Te ayudamos a elegir por WhatsApp 📲
+Link en bio."`,
+ caption:"🚨 Faltan 6 días para el Día del Padre\n\nEsta es la última semana para pedir con envío y que llegue a tiempo.\n\nSi lo dejás para el finde, puede no llegar.\n\n📲 Pedilo hoy por WhatsApp\n\n#DiaDelPadre #UltimaSemana #InfinitoRegaleria #Urgente",
+ tip:"Semana clave. Aumentá la frecuencia de stories esta semana — al menos 2-3 por día recordando plazos de envío y stock."},
+
+{date:"16 Jun",dw:"Mar",day:31,phase:3,type:"producto",title:"Campera de la Selección — Últimos talles disponibles",
+ format:"Reel · 25 seg · Mostrar stock real de talles",
+ instruction:"Si ciertos talles se están agotando, comunicalo (con honestidad). Si no, enfocate en 'últimos días para asegurar tu talle'.",
+ script:`[Mostrar percheros o stock de camperas]
+Texto/voz:
+"Quedan pocos días para asegurar tu talle para el Día del Padre 🇦🇷"
+
+[Mostrar talles disponibles]
+
+[Cierre]
+"No te quedes sin la tuya.
+Consultá disponibilidad por WhatsApp 📲"`,
+ caption:"Quedan pocos días para asegurar tu talle 🇦🇷\n\nCampera oficial de la Selección — consultá disponibilidad antes de que se agote tu talle.\n\n📲 WhatsApp en bio\n\n#DiaDelPadre #CamperaSeleccion #InfinitoRegaleria #UltimosTalles",
+ tip:"Nota: este día técnicamente arranca la 'Fase 3' del plan original, pero como la campaña de Día del Padre sigue activa hasta el 21, el contenido continúa en la misma línea hasta esa fecha."},
+
+{date:"17 Jun",dw:"Mié",day:32,phase:3,type:"testimonio",title:"Testimonio + Countdown: Faltan 4 días",
+ format:"Foto/video + Story countdown",
+ instruction:"Combiná un testimonio reciente con el countdown. Si tenés varios testimonios acumulados, este es buen momento para mostrarlos.",
+ script:`Post:
+[Foto/testimonio de cliente reciente]
+"Otro pedido en camino para el Día del Padre 🎁📦"
+
+Story:
+[Sticker countdown]
+"Faltan 4 días 🔥"
+"¿Ya hiciste tu pedido?"`,
+ caption:"Otro pedido en camino para el Día del Padre 🎁📦\n\nFaltan 4 días — si todavía no pediste el regalo, este es el momento.\n\n📲 WhatsApp en bio\n\n#DiaDelPadre #InfinitoRegaleria #Testimonio #4Dias",
+ tip:"Si acumulaste varios testimonios durante la campaña, esta semana es ideal para mostrarlos todos — la prueba social pesa fuerte en la decisión final."},
+
+{date:"18 Jun",dw:"Jue",day:33,phase:3,type:"tips",title:"Cómo armar un regalo sorpresa con lo que tenemos",
+ format:"Reel o carrusel · Tips prácticos de presentación",
+ instruction:"Mostrá cómo envolver o presentar el regalo (bolsa, caja, tarjeta). Aporta valor más allá del producto — ayuda a 'la sorpresa'.",
+ script:`[Mostrar materiales: bolsa de regalo, papel, tarjeta]
+Texto/voz:
+"3 tips para que la sorpresa sea total 🎁"
+
+1. "Usá una caja o bolsa que no deje ver el producto"
+2. "Agregá una tarjeta con una frase corta — eso emociona más que el regalo en sí"
+3. "Entregalo en un momento tranquilo, sin apuro"
+
+[Cierre]
+"¿Ya tenés el producto? Si no, todavía hay tiempo. Consultá por WhatsApp 📲"`,
+ caption:"3 tips para que la sorpresa sea total 🎁\n\n1️⃣ Usá una caja o bolsa que no deje ver el producto\n2️⃣ Agregá una tarjeta con una frase corta\n3️⃣ Entregalo en un momento tranquilo\n\n📲 Si todavía no tenés el regalo, todavía hay tiempo — consultá por WhatsApp\n\n#DiaDelPadre #InfinitoRegaleria #Tips #Regalos",
+ tip:"Este post de valor genera buena interacción y mantiene la marca presente sin sonar repetitivo con la urgencia de los días anteriores."},
+
+{date:"19 Jun",dw:"Vie",day:34,phase:3,type:"oferta",title:"🎁 Envío gratis en pedidos para el Día del Padre",
+ format:"Post feed + Stories · Oferta de cierre de campaña",
+ instruction:"Si podés ofrecer envío gratis (o a un precio simbólico) para pedidos de hoy/mañana, es un gran cierre de campaña. Si no es viable, podés ofrecer un regalo adicional pequeño (ej: tarjeta de regalo).",
+ script:`Story:
+"🚨 ÚLTIMOS DÍAS 🚨"
+"Envío gratis en pedidos realizados hoy y mañana"
+"Para que llegue antes del domingo"
+[Flecha → WhatsApp/Link en bio]`,
+ caption:"🚨 ÚLTIMOS DÍAS 🚨\n\nEnvío gratis en pedidos realizados hoy y mañana, para que llegue antes del domingo.\n\n📲 Hacé tu pedido ahora por WhatsApp\n\n#DiaDelPadre #EnvioGratis #InfinitoRegaleria #UltimosDias",
+ tip:"El envío gratis de último momento es un gran 'empujón final' para los indecisos. Comunicalo con horario límite claro (ej: hasta las 18hs)."},
+
+{date:"20 Jun",dw:"Sáb",day:35,phase:3,type:"urgencia",title:"🚨 Último día para asegurar la entrega antes de mañana",
+ format:"Reel + Stories todo el día",
+ instruction:"Sábado = último día útil antes del Día del Padre (domingo). Si tenés venta en local físico, este es el día de mayor tráfico — comunicalo.",
+ script:`[Cara a cámara, tono cálido pero urgente]
+"Hoy es el último día."
+
+"Si todavía no compraste el regalo para tu papá...
+hoy es el día."
+
+[Si hay local físico]
+"Te esperamos en el local hasta las [hora]."
+
+[Si es solo online]
+"Por WhatsApp respondemos todo el día.
+Última oportunidad para tenerlo antes de mañana."
+
+[Cierre]
+"Link en bio. Te ayudamos a elegir."`,
+ caption:"🚨 HOY es el último día 🚨\n\nSi todavía no tenés el regalo para tu papá, hoy es el momento.\n\n📲 Te ayudamos a elegir por WhatsApp — todo el día\n\n#DiaDelPadre #UltimoDia #InfinitoRegaleria",
+ tip:"Publicá varias stories durante el día (mañana, mediodía, tarde) recordando que es el último día. Es el día de mayor conversión de toda la campaña."},
+
+{date:"21 Jun",dw:"Dom",day:36,phase:3,type:"regalo",title:"🎉 Feliz Día del Padre — Post especial",
+ format:"Post feed + Stories · Día del evento, tono celebratorio",
+ instruction:"Hoy NO se vende. Es un día de celebración y agradecimiento. Diseño cálido, frase emotiva.",
+ script:`Post feed:
+[Diseño cálido, foto de productos como 'regalos ya entregados']
+"Feliz Día del Padre 🎉👨‍👧‍👦"
+"Gracias a todos los que confiaron en Infinito Regalería para este día tan especial."
+
+Story:
+"Hoy es para ellos 💛"
+"Feliz Día del Padre a todos los papás"`,
+ caption:"🎉 ¡Feliz Día del Padre! 👨‍👧‍👦\n\nGracias a todos los que confiaron en Infinito Regalería para encontrar el regalo perfecto este año.\n\nQue lo disfruten en familia 💛\n\n#DiaDelPadre #InfinitoRegaleria #Familia",
+ tip:"Día sin venta directa = construcción de marca y cierre emocional de la campaña. Mañana arranca la Fase 3 con foco en liquidación de invierno y cierre de mes."},
+
+// ============ FASE 3: CIERRE Y LIQUIDACIÓN DE INVIERNO (Días 37-45 · 22-30 Jun) ============
+{date:"22 Jun",dw:"Lun",day:37,phase:3,type:"testimonio",title:"Agradecimiento + repost de mejores momentos",
+ format:"Carrusel o reel · Recopilación de fotos/testimonios de la campaña",
+ instruction:"Si juntaste fotos o videos de clientes durante la campaña de Día del Padre, armá un resumen. Agradecé públicamente.",
+ script:`[Carrusel con 3-5 fotos/testimonios de la campaña]
+Texto:
+"Así fue el Día del Padre en Infinito Regalería 🎉"
+[Mostrar fotos de productos entregados / reacciones]
+
+[Última slide]
+"Gracias por elegirnos. Esta semana arrancamos con nuevas novedades 👀"`,
+ caption:"Así fue el Día del Padre en Infinito Regalería 🎉\n\nGracias por elegirnos para este momento tan especial. Esta semana arrancamos con nuevas novedades 👀\n\n#InfinitoRegaleria #DiaDelPadre #Gracias",
+ tip:"Empezás la Fase 3 (cierre de mes). El foco ahora pasa de 'regalo para otro' a 'date un gusto vos' — invierno, liquidación, combos."},
+
+{date:"23 Jun",dw:"Mar",day:38,phase:3,type:"producto",title:"Puffer negra — Liquidación de invierno",
+ format:"Reel · 25 seg · Producto + precio destacado",
+ instruction:"Si vas a hacer liquidación/descuento en puffers (por stock o cierre de temporada), comunicalo con claridad. Si no hay descuento, enfocate en 'todavía hay invierno por delante, comprá ahora'.",
+ script:`[Mostrar la campera puesta + texto de precio]
+Texto/voz:
+"Todavía queda mucho invierno por delante ❄️"
+
+[Si hay descuento]
+"Y ahora con un precio especial."
+
+[Si no hay descuento]
+"Asegurá la tuya antes de que se agoten los talles."
+
+[Cierre]
+"Consultá disponibilidad por WhatsApp 📲"`,
+ caption:"Todavía queda mucho invierno por delante ❄️🖤\n\nCampera puffer negra — asegurá la tuya antes de que se agoten los talles.\n\n📲 Consultá por WhatsApp\n\n#CamperaPuffer #Invierno #InfinitoRegaleria #Liquidacion",
+ tip:"Si tenés stock que querés rotar antes de fin de mes, esta semana es ideal para liquidaciones puntuales — comunicalas con honestidad ('últimas unidades')."},
+
+{date:"24 Jun",dw:"Mié",day:39,phase:3,type:"tips",title:"Cómo cuidar tus joyas de acero para que duren más",
+ format:"Carrusel Canva · 5 slides · Post de valor",
+ instruction:"Post educativo que también sirve como post-venta (cuidado del producto que ya compraron) y como argumento de venta (durabilidad).",
+ slides:[
+   {n:"Slide 1","t":"Cómo cuidar tus joyas de acero para que duren toda la vida ✨"},
+   {n:"Slide 2","t":"1. El acero quirúrgico no necesita cuidados especiales — podés bañarte y nadar con él"},
+   {n:"Slide 3","t":"2. Para mantener el brillo, limpiá de vez en cuando con un paño suave"},
+   {n:"Slide 4","t":"3. No se oxida, no se pone verde, no pierde el color con el tiempo"},
+   {n:"Slide 5 (CTA)","t":"4. Por eso son ideales para uso diario o para regalar. Mirá la colección completa 📲 Link en bio"},
+ ],
+ caption:"✨ Cómo cuidar tus joyas de acero para que duren toda la vida\n\nEl acero quirúrgico no se oxida, no se pone verde y no pierde el color. Ideal para uso diario.\n\n🔗 Mirá toda la colección: link en bio\n\n#JoyasDeAcero #InfinitoRegaleria #Tips #Cuidados",
+ tip:"Este post genera confianza también en quienes ya compraron (refuerza la decisión) y atrae nuevos compradores que valoran la durabilidad."},
+
+{date:"25 Jun",dw:"Jue",day:40,phase:3,type:"oferta",title:"🌸 2x1 en perfumes seleccionados",
+ format:"Post feed + Stories · Oferta puntual",
+ instruction:"Si podés armar una promo 2x1 en perfumes (combinando 2 unidades de menor rotación), es una excelente forma de mover stock.",
+ script:`Story:
+"🌸 PROMO 2x1 EN PERFUMES SELECCIONADOS"
+"Válido esta semana"
+[Mostrar los perfumes incluidos]
+[Flecha → WhatsApp/Link en bio]`,
+ caption:"🌸 PROMO 2x1 en perfumes seleccionados\n\nVálido esta semana — ideal para vos y para regalar.\n\n📲 Consultá cuáles están incluidos por WhatsApp\n\n#Perfumes #Promo2x1 #InfinitoRegaleria #Oferta",
+ tip:"Las promos 2x1 funcionan muy bien para productos de menor rotación — movés stock sin necesidad de bajar el precio unitario."},
+
+{date:"26 Jun",dw:"Vie",day:41,phase:3,type:"combo",title:"Combo cierre de mes: Campera + Joya con precio especial",
+ format:"Post feed o carrusel · Combo de cierre de mes",
+ instruction:"Armá un combo distinto al de Día del Padre (ej: campera + joya, en vez de campera + perfume) para dar variedad y mover otra combinación de stock.",
+ slides:[
+   {n:"Slide 1 (portada)","t":"🎁 Combo Cierre de Junio — Campera + Joya de acero"},
+   {n:"Slide 2","t":"Elegí tu campera (selección o puffer) + una joya de acero a elección"},
+   {n:"Slide 3 (CTA)","t":"Precio combo especial, solo esta semana. Consultá por WhatsApp 📲"},
+ ],
+ caption:"🎁 Combo Cierre de Junio — Campera + Joya de acero\n\nElegí tu campera (selección o puffer) + una joya a elección, con precio especial solo esta semana.\n\n📲 Consultá por WhatsApp o DM\n\n#InfinitoRegaleria #Combo #CierreDeMes #Ofertas",
+ tip:"Variar las combinaciones de combos mantiene el contenido fresco y te permite mover distintas categorías de stock según necesidad."},
+
+{date:"27 Jun",dw:"Sáb",day:42,phase:3,type:"bts",title:"Preparando el stock para julio",
+ format:"Story + Reel · 15 seg · Mostrar nueva mercadería o reorganización",
+ instruction:"Mostrá que la tienda sigue en movimiento — nuevo stock entrando, reorganización para el próximo mes. Genera expectativa para julio.",
+ script:`[Cámara mostrando cajas nuevas o reorganización de exhibición]
+Texto/voz:
+"Preparando todo para julio 📦✨"
+
+[Mostrar algunos productos nuevos o reordenados]
+
+[Cierre]
+"¿Qué te gustaría que traigamos el mes que viene? Contanos 👇"`,
+ caption:"Preparando todo para julio 📦✨\n\n¿Qué te gustaría que traigamos el mes que viene? Contanos en los comentarios 👇\n\n#InfinitoRegaleria #NuevoStock #DetrasDeEscena",
+ tip:"Pedir sugerencias genera comentarios Y te da información real sobre qué productos demandar para el próximo mes."},
+
+{date:"28 Jun",dw:"Dom",day:43,phase:3,type:"testimonio",title:"Lo más vendido del mes",
+ format:"Carrusel Canva · 4-5 slides · Prueba social / ranking",
+ instruction:"Armá un 'ranking' de los productos más vendidos de junio. Genera prueba social ('si otros lo compraron, debe ser bueno') sin necesidad de testimonios individuales.",
+ slides:[
+   {n:"Slide 1 (portada)","t":"Lo más vendido en Infinito Regalería durante junio 🏆"},
+   {n:"Slide 2","t":"🥇 Campera de la Selección — el regalo estrella del Día del Padre"},
+   {n:"Slide 3","t":"🥈 Joyas de acero dorado — el favorito para regalar"},
+   {n:"Slide 4","t":"🥉 Perfumes — siempre un acierto seguro"},
+   {n:"Slide 5 (CTA)","t":"¿Ya tenés el tuyo? Mirá el catálogo completo 📲 Link en bio"},
+ ],
+ caption:"🏆 Lo más vendido en Infinito Regalería durante junio\n\n🥇 Campera de la Selección\n🥈 Joyas de acero dorado\n🥉 Perfumes\n\n¿Ya tenés el tuyo? Mirá el catálogo completo en el link de bio.\n\n#InfinitoRegaleria #LoMasVendido #Ranking",
+ tip:"Los rankings de 'lo más vendido' funcionan como prueba social pasiva — no necesitás testimonios individuales para transmitir confianza."},
+
+{date:"29 Jun",dw:"Lun",day:44,phase:3,type:"urgencia",title:"⏰ Últimas horas de las promos de junio",
+ format:"Reel + Stories · Recordatorio de cierre de mes",
+ instruction:"Recordá todas las promos activas que cierran con el mes (2x1 perfumes, combo cierre de mes, etc.). Comunicalo como 'últimas horas'.",
+ script:`[Cara a cámara o voz en off]
+"Quedan pocas horas para las promos de junio."
+
+[Listar rápido]
+"2x1 en perfumes."
+"Combo campera + joya con precio especial."
+
+[Cierre]
+"Mañana arrancamos julio con todo nuevo.
+Si querés aprovechar, es hoy. 📲 WhatsApp en bio."`,
+ caption:"⏰ Últimas horas de las promos de junio\n\n🌸 2x1 en perfumes\n🎁 Combo campera + joya con precio especial\n\nMañana arrancamos julio con todo nuevo. Si querés aprovechar, es HOY.\n\n📲 WhatsApp en bio\n\n#InfinitoRegaleria #UltimasHoras #Ofertas",
+ tip:"Los cierres de mes generan un pico de ventas similar al de las campañas — la gente reacciona a los plazos, sea cual sea el motivo."},
+
+{date:"30 Jun",dw:"Mar",day:45,phase:3,type:"cierre",title:"Cerramos junio — Gracias y adelanto de julio",
+ format:"Post feed + Stories · Cierre de plan + apertura del siguiente ciclo",
+ instruction:"Cierre del plan de 45 días. Agradecé a la comunidad, resumí brevemente el mes y generá expectativa para julio (nuevo ciclo de contenido).",
+ script:`Post feed:
+[Diseño cálido con productos destacados del mes]
+"Cerramos junio 🎉"
+"Gracias por acompañarnos en la campaña del Día del Padre y en cada pedido del mes."
+
+Story:
+"Julio viene con sorpresas 👀"
+"Seguinos para no perderte nada"`,
+ caption:"Cerramos junio 🎉\n\nGracias por acompañarnos en la campaña del Día del Padre y en cada pedido de este mes.\n\nJulio viene con sorpresas — seguinos para no perderte nada 👀\n\n#InfinitoRegaleria #GraciasJunio #ProximamenteJulio",
+ tip:"Fin del plan de 45 días. Revisá qué tipo de contenido (producto, oferta, combo, testimonio) tuvo mejor desempeño y usalo como base para armar el próximo ciclo de 30-45 días."},
+];
+
+const TYPE_LABELS = {
+  producto:"Producto",testimonio:"Testimonio",tips:"Tips/Valor",bts:"BTS",
+  oferta:"Oferta",combo:"Combo",urgencia:"Urgencia",regalo:"Día del Padre",cierre:"Cierre"
+};
+
+const REGLAS = [
+  {n:"01",title:"Publicá todos los días algo",text:"Aunque sea una story de 10 segundos. El algoritmo penaliza la desaparición. La constancia es el activo #1 de esta campaña."},
+  {n:"02",title:"80% valor/contenido, 20% venta directa",text:"Si todo el contenido dice 'comprá comprá', la gente te ignora. Dale tips, inspiración, detrás de escena. La venta ocurre de fondo, todo el tiempo."},
+  {n:"03",title:"CTA siempre visible",text:"WhatsApp o link en la bio siempre. Primer comentario siempre. Decirlo en cada video: 'consultá por WhatsApp'."},
+  {n:"04",title:"Reutilizá el contenido",text:"Un reel de producto lo podés repetir cada 7-10 días con un ángulo distinto. Un testimonio lo usás varias veces con distintos textos."},
+  {n:"05",title:"Pedí que compartan y etiqueten",text:"'Etiquetá a quien le tenés que regalar esto' o 'Compartiselo a alguien que lo necesita'. El boca a boca mueve más que cualquier anuncio pago."},
+  {n:"06",title:"Herramientas básicas",text:"Canva para diseños (2 colores + 1 tipografía, ej: dorado + negro). CapCut para editar reels en 10 min. Metricool o Meta Business Suite para programar los domingos."},
+  {n:"07",title:"Comunicá tiempos de envío",text:"Especialmente en la semana previa al Día del Padre. La gente necesita saber si va a llegar a tiempo — eso genera urgencia real y evita reclamos."},
+  {n:"08",title:"Respondé los DMs rápido",text:"Cada mensaje es una posible venta. Activá respuestas rápidas para preguntas frecuentes (talles, precios, envíos) y dedicá tiempo diario a responder."},
+];
+
+let currentPhase = 1;
+let currentDayIdx = null;
+
+function setPhase(phase, btn) {
+  currentPhase = phase;
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  currentDayIdx = null;
+  renderList();
+  if (phase === 0) {
+    document.getElementById('day-list').innerHTML = '';
+    renderReglas();
+  } else {
+    document.getElementById('content').innerHTML = '<div class="welcome"><div class="welcome-icon">🎁</div><h2>Seleccioná un día</h2><p>Hacé clic en cualquier día para ver el contenido listo para publicar.</p></div>';
+  }
+}
+
+function renderList() {
+  const list = document.getElementById('day-list');
+  if (currentPhase === 0) { list.innerHTML = ''; return; }
+
+  const filtered = DAYS.filter(d => d.phase === currentPhase);
+  const todayDate = "17 May";
+  list.innerHTML = filtered.map((d) => {
+    const idx = DAYS.indexOf(d);
+    const isToday = d.date === todayDate;
+    return `<div class="day-card ${isToday?'today':''}" onclick="showDay(${idx})" id="dc-${idx}">
+      <div class="day-num">Día ${d.day}</div>
+      <div style="flex:1;min-width:0">
+        <div class="day-date">${d.dw} ${d.date}${isToday?'<span class="today-pill">HOY</span>':''}</div>
+        <div style="font-size:.78rem;color:var(--muted);margin:.15rem 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.title}</div>
+        <span class="day-type-badge badge-${d.type}">${TYPE_LABELS[d.type]||d.type}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function showDay(idx) {
+  currentDayIdx = idx;
+  document.querySelectorAll('.day-card').forEach(c => c.classList.remove('active'));
+  const el = document.getElementById('dc-'+idx);
+  if (el) el.classList.add('active');
+
+  const d = DAYS[idx];
+  const todayDate = "17 May";
+  const isToday = d.date === todayDate;
+
+  let slidesHTML = '';
+  if (d.slides && d.slides.length) {
+    slidesHTML = `<div class="section">
+      <div class="section-label blue">Contenido de slides / guion</div>
+      <ul class="slides-list">
+        ${d.slides.map(s=>`<li><strong>${s.n}</strong>${s.t}</li>`).join('')}
+      </ul>
+    </div>`;
+  }
+
+  let scriptHTML = '';
+  if (d.script) {
+    scriptHTML = `<div class="section">
+      <div class="section-label fire">Script / Guion</div>
+      <div class="content-text">${escapeHtml(d.script)}</div>
+    </div>`;
+  }
+
+  const prev = idx > 0 ? `<button class="nav-btn" onclick="showDay(${idx-1})">← Día anterior</button>` : '';
+  const next = idx < DAYS.length-1 ? `<button class="nav-btn" onclick="showDay(${idx+1})">Día siguiente →</button>` : '';
+
+  document.getElementById('content').innerHTML = `
+    <div class="detail-header">
+      <div style="flex:1">
+        <div class="detail-day-num">Día ${d.day} · Fase ${d.phase} · <span class="day-type-badge badge-${d.type}">${TYPE_LABELS[d.type]||d.type}</span>${isToday?'<span class="today-pill" style="margin-left:.5rem">HOY</span>':''}</div>
+        <div class="detail-date">${d.dw} ${d.date}</div>
+        <div class="detail-title">${d.title}</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Formato y canal</div>
+      <div class="content-text">${d.format}</div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Instrucciones de producción</div>
+      <div class="content-text">${d.instruction}</div>
+    </div>
+
+    ${slidesHTML}
+    ${scriptHTML}
+
+    <div class="section fire">
+      <div class="section-label fire">Caption listo para copiar</div>
+      <div class="caption-box" id="cap-${idx}">${escapeHtml(d.caption)}</div>
+      <button class="copy-btn" onclick="copyCaption(${idx})" id="copy-btn-${idx}">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copiar caption
+      </button>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Tip del día</strong>
+      ${escapeHtml(d.tip)}
+    </div>
+
+    <div class="nav-footer">${prev}${next}</div>
+  `;
+}
+
+function renderReglas() {
+  document.getElementById('content').innerHTML = `
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:.25rem">Reglas de oro para que funcione</div>
+      <div style="font-size:.85rem;color:var(--muted)">Aplicá estas 8 reglas durante los 45 días y el plan multiplica tus ventas.</div>
+    </div>
+    <div>
+      ${REGLAS.map(r=>`
+        <div class="regla">
+          <div class="regla-num">${r.n}</div>
+          <div class="regla-text"><strong>${r.title}</strong>${r.text}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="margin-top:1.5rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px">
+      <div style="font-size:.8rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem">Herramientas recomendadas</div>
+      <div class="tools-grid">
+        <div class="tool-item"><div class="tool-name">Canva</div><div class="tool-desc">Diseños de feed. Dorado + negro/blanco + 1 tipografía. No te compliques.</div></div>
+        <div class="tool-item"><div class="tool-name">CapCut</div><div class="tool-desc">Editar reels en 10 min. Subtítulos automáticos incluidos.</div></div>
+        <div class="tool-item"><div class="tool-name">Metricool</div><div class="tool-desc">Programá todo los domingos. No te quemés publicando en tiempo real.</div></div>
+      </div>
+    </div>
+    <div style="margin-top:1rem;padding:1rem;background:#131a13;border:1px solid #1e3a1e;border-radius:10px;font-size:.85rem;color:#80c080;line-height:1.6">
+      <strong style="color:var(--green);display:block;margin-bottom:.25rem;font-size:.75rem;text-transform:uppercase">Frases gancho para usar en tus reels</strong>
+      "El regalo que todo papá futbolero quiere 🇦🇷🔥"<br>
+      "Calidad que se siente desde el primer día"<br>
+      "Acero que no se mancha, no se pone verde y dura toda la vida"<br>
+      "Pedí con tiempo — envíos a todo el país"
+    </div>
+  `;
+}
+
+function copyCaption(idx) {
+  const text = DAYS[idx].caption;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = document.getElementById('copy-btn-'+idx);
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('copied');
+    setTimeout(()=>{
+      btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar caption';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function escapeHtml(str){
+  if(!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/\n/g,'<br>');
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  renderList();
+  const todayIdx = DAYS.findIndex(d => d.date === "17 May");
+  if (todayIdx >= 0) showDay(todayIdx);
+});
+</script>
+</body>
+</html>
